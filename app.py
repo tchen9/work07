@@ -6,8 +6,8 @@ my_app = Flask(__name__)
 def root():
     return render_template('base.html')
 
-@my_app.route('/bob', methods = ['GET', 'POST'])
-def bob():
+@my_app.route('/welcome', methods = ['GET', 'POST'])
+def welcome():
     
     print request.method
     print request.headers
