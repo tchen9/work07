@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body1 %}
+
+USERNAME:
+<form method = "POST">
+  <input type = "text" name = "username">
+  <input type = "submit">
+</form>
+
+Method Type: {{method}}
+<br>
+Hi {{username}} !!!!!!!!
+
+{% endblock %}
