@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
+app.secret_key = "this is not secure"
 
 @app.route('/')
 def home():
@@ -8,12 +9,15 @@ def home():
 
 @app.route('/welcomePage', methods=['POST','GET'])
 def welcome():
-	print request.headers
-	print request.method
-	print request.form
 	print request.form['user']
-	return render_template('input.html', title = request.form['user'] + "'s", user = request.form['user'], method = request.method)
-
+        user = request.form['user']
+        if user == 'hello':
+                if request.form['password'] == 'secret':
+                        return render_template('input.html', title = user + "'s", user = user, method = request.method)
+                else:
+                        return render_template('fail.html', message = "Sorry, wrong password")
+        else:
+                return render_template('fail.html', message = "Sorry, wrong username")
 
 if __name__ == "__main__":
 	app.debug = True
