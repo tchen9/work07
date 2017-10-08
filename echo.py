@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
 app.secret_key = "this is not secure"
@@ -26,7 +26,7 @@ def welcome():
 @app.route('/logout')
 def logout():
         session.pop('user')
-        return render_template('form.html')
+        return redirect(url_for('home'))
 
 if __name__ == "__main__":
 	app.debug = True
