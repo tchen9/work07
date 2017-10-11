@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, flash, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
 app.secret_key = "this is not secure"
@@ -19,10 +19,10 @@ def welcome():
                         session['user'] = request.form['user']
                         return render_template('input.html', title = user + "'s", user = user, method = request.method)
                 else:
-                        return render_template('fail.html', message = "Sorry, wrong password")
+                	flash("Sorry, wrong password")
         else:
-                return render_template('fail.html', message = "Sorry, wrong username")
-
+        	flash("Sorry, wrong username")
+	return redirect(url_for('home'))       
 @app.route('/logout')
 def logout():
         session.pop('user')
