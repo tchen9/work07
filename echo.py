@@ -23,6 +23,7 @@ def welcome():
         else:
         	flash("Sorry, wrong username")
 	return redirect(url_for('home'))       
+
 @app.route('/logout')
 def logout():
         session.pop('user')
